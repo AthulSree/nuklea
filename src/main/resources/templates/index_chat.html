@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="shortcut icon" th:href="@{images/nuklea.png}">
+    <link rel="stylesheet" th:href="@{font-awesome/css/font-awesome.min.css}">
+    <!--    <script crossorigin="anonymous" src="https://kit.fontawesome.com/391827d54c.js"></script>-->
+    <link rel="stylesheet" th:href="@{css/index_chat.css}">
+    <title>New Kiliyaa!</title>
+    <script th:src="@{js/jquery.js}"></script>
+</head>
+
+
+<body>
+<div class="background-green"></div>
+
+<div class="main-container">
+    <div class="left-container">
+
+        <!--header -->
+        <div class="header">
+            <div class="user-img">
+                <div>
+                    <img alt="" class="dp" th:src="@{uploads/profile_pics/}+${logged_user.profilePic}">
+                </div>
+            </div>
+
+            <div class="nav-icons">
+                Hii &nbsp;<b th:text="${logged_user.name}"> </b>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <li><i class="fa fa-users"></i></li>
+                <!--                <li><i class="fa fa-message"></i></li>-->
+                <!--                <li><i class="fa-solid fa-ellipsis-vertical"></i></li>-->
+            </div>
+        </div>
+
+
+        <!--notification -->
+        <div class="notif-box">
+            <!--            <i class="fa-solid fa-bell-slash"></i>-->
+            <div class="img-box">
+                <img alt="" class="img-cover" style="width: 4.5em; margin-left: 3em;" th:src="@{images/nuklea.png}">
+            </div>
+            <div class="notif-text">
+                <!--                <p>Get Notified of New Messages</p>-->
+                <!--                <a href="#">Turn on Desktop Notifications ›</a>-->
+                Welcome to <h2>Nuklea!</h2>
+            </div>
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+
+        <!--search-container -->
+        <div class="search-container">
+            <div class="input">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input placeholder="Search or start new chat   " type="text"></div>
+            <i class="fa-sharp fa-solid fa-bars-filter"></i>
+        </div>
+
+
+        <!--chats -->
+        <div class="chat-list" data-path="/chat_list" id="chat_list">
+
+        </div>
+
+    </div>
+
+
+    <div class="right-container">
+        <!--header -->
+        <div class="header">
+            <div class="img-text">
+                <div class="user-img">
+                    <img alt=""
+                         class="dp"
+                         id="leo_dp"
+                         src="">
+                </div>
+                <h4 id="leo_name"></h4>
+            </div>
+            <div class="nav-icons">
+                <li><i class="fa-solid fa-magnifying-glass"></i></li>
+                <li><i class="fa-solid fa-ellipsis-vertical"></i></li>
+            </div>
+        </div>
+
+
+        <!--chat-container -->
+        <div class="chat-container" id="chat-container" data-path="/load_chats">
+            <div class="img-box" style="text-align:center">
+                <img alt="" class="img-cover" style="width: 20em;" th:src="@{images/nuklea_banner.png}">
+            </div>
+        </div>
+
+
+        <!--input-bottom -->
+        <div class="chatbox-input" id="chat_textarea" >
+            <i class="fa-regular fa-face-grin"></i>
+            <i class="fa-sharp fa-solid fa-paperclip"></i>
+<!--            <input placeholder="Type a message" type="text">-->
+            <textarea class="messageContent" placeholder="Write something here..." oninput="autoResize(this)"></textarea>
+            <i class="fa fa-paper-plane" id="sendMessage" data-path="/send_message"></i>
+        </div>
+    </div>
+
+</div>
+</body>
+<script th:src="@{js/index_chat.js}"></script>
+</html>

@@ -1,0 +1,21 @@
+
+<div th:each="nuklea_user,stat : ${nukleaUsers}"  th:class="${activeUser.toString() == nuklea_user.id.toString() ? 'chat-box active' : 'chat-box'}" th:data-userid="${nuklea_user.id}">
+    <div class="img-box">
+        <img class="img-cover" th:src="@{uploads/profile_pics/}+${nuklea_user.profilePic}" alt="">
+    </div>
+    <div class="chat-details">
+        <div class="text-head">
+            <h4 th:text="${nuklea_user.name}" class="username_chat"></h4>
+
+                <p class="time unread" th:each="lastChat : ${lastMsg}" th:if="${nuklea_user.id.toString()==lastChat.receiver.id.toString() or nuklea_user.id.toString()==lastChat.sender.id.toString()}" th:text="${#temporals.format(lastChat.updated_time, 'EEEE,h:mm a')}"></p>
+
+<!--            <p class="time unread">11:49</p>-->
+        </div>
+        <div class="text-message" th:each="lastChat : ${lastMsg}">
+            <p class="truncate_text" th:if="${nuklea_user.id.toString()==lastChat.receiver.id.toString() or nuklea_user.id.toString()==lastChat.sender.id.toString()}" th:text="${lastChat.msg_id.content}">“How are you?”</p>
+<!--            <b th:text="${nuklea_user.id}"></b>-->
+<!--            <b th:text="${lastChat.receiver}"></b>-->
+<!--            <b th:text="${lastChat.msg_id.content}"></b>-->
+        </div>
+    </div>
+</div>

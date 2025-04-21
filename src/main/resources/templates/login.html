@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnterApp Login</title>
+    <link rel="stylesheet" th:href="@{css/login.css}">
+    <script th:src="@{js/jquery.js}"></script>
+</head>
+<style>
+    .fgcolor{
+        color: #071919 !important;
+    }
+    .login-card {
+    /* ... other styles ... */
+    position: relative; /* Necessary for absolute positioning of the logo */
+}
+
+.login-card img {
+    position: absolute;
+    top: -13%;
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    width: 20%; /* Adjust width as needed */
+    height: auto;
+    animation: rotate 2s ease-in-out infinite;
+}
+
+</style>
+<body>
+<div class="login-card">
+    <img class="rotating-image" th:src="@{images/nuklea.png}">
+    <h1> Welcome to <b>Nuklea </b></h1>
+    <h4>[V 1.02.24]</h4>
+    <br>
+    <h2>Enter Your Phone Number</h2>
+    <form id="loginForm" action="/signup" method="POST" enctype="multipart/form-data">
+        <div class="phone-number-inputs">
+            <!-- 10 input boxes for each digit of the phone number -->
+            <input type="text" maxlength="1" name="digit1" class="phonenumber firstdigit" required oninput="moveToNext(this, 'digit2')">
+            <input type="text" maxlength="1" name="digit2" class="phonenumber" required oninput="moveToNext(this, 'digit3')">
+            <input type="text" maxlength="1" name="digit3" class="phonenumber" required oninput="moveToNext(this, 'digit4')">
+            <input type="text" maxlength="1" name="digit4" class="phonenumber" required oninput="moveToNext(this, 'digit5')">
+            <input type="text" maxlength="1" name="digit5" class="phonenumber" required oninput="moveToNext(this, 'digit6')">
+            <input type="text" maxlength="1" name="digit6" class="phonenumber" required oninput="moveToNext(this, 'digit7')">
+            <input type="text" maxlength="1" name="digit7" class="phonenumber" required oninput="moveToNext(this, 'digit8')">
+            <input type="text" maxlength="1" name="digit8" class="phonenumber" required oninput="moveToNext(this, 'digit9')">
+            <input type="text" maxlength="1" name="digit9" class="phonenumber" required oninput="moveToNext(this, 'digit10')">
+            <input type="text" maxlength="1" name="digit10" class="phonenumber" required>
+        </div>
+
+        <input type="text" name="formatted_ph" id="formatted_ph" hidden>
+        <button type="submit" class="submit-btn">Sign In</button>
+    </form>
+</div>
+
+<script th:src="@{js/login.js}"></script>
+
+</body>
+</html>

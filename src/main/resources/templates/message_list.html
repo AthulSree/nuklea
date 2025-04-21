@@ -1,0 +1,39 @@
+
+<div th:each="chat_msg,iterstat : ${chatData}">
+    <!-- Check if the date is different -->
+    <div style="text-align:center">
+        <span class="updateddate" style="background-color: #98c7c7;padding:5px;border-radius:5px; display:inline-block; margin-top: 10px;  margin-bottom: 10px;"
+              th:if="${iterstat.index == 0}"
+              th:text="${#temporals.format(chat_msg.updated_time, 'EEEE,dd-MM-yyyy')}"></span>
+
+        <span class="updateddate" style="background-color: #98c7c7;padding:5px;border-radius:5px;display:inline-block; margin-top: 10px;  margin-bottom: 10px;"
+              th:if="${iterstat.index > 0  and chatData[iterstat.index].updated_time.toLocalDate() != chatData[iterstat.index -1].updated_time.toLocalDate()}"
+              th:text="${#temporals.format(chat_msg.updated_time, 'EEEE,dd-MM-yyyy')}"></span>
+    </div>
+
+<!--    &lt;!&ndash; Message box &ndash;&gt;-->
+<!--    <div th:class="${loggedId.toString() == chat_msg.sender.id.toString() ? 'message-box my-message' : 'message-box friend-message'}">-->
+<!--        <p th:inline="text" >-->
+<!--            <k class="findtext">[[${chat_msg.msg_id.content}]]</k><br>-->
+<!--            <span style="text-align:end" th:text="${#temporals.format(chat_msg.updated_time, 'h:mm a')}"></span>-->
+<!--        </p>-->
+<!--    </div>-->
+
+    <!-- Message box -->
+    <div th:class="${loggedId.toString() == chat_msg.sender.id.toString() ? 'message-box my-message' : 'message-box friend-message'}">
+        <p th:inline="text">
+            <!-- Escape the message content for safe display -->
+            <k class="findtext" th:text="${#strings.escapeXml(chat_msg.msg_id.content)}"></k><br>
+            <!-- Format the updated time -->
+            <span style="text-align:end" th:text="${#temporals.format(chat_msg.updated_time, 'h:mm a')}"></span>
+        </p>
+    </div>
+
+</div>
+
+
+
+
+
+
+
